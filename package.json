@@ -1,0 +1,9 @@
+{
+  "name": "observable-graphql",
+  "version": "0.1.0",
+  "description": "A view-layer-agnostic approach to managing state with Redux, Apollo Client, and Observables",
+  "main": "index.ts",
+  "author": "Alex Pearson <alex@alexpear.com>",
+  "license": "MIT",
+  "private": true
+}
