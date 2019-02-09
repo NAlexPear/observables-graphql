@@ -2,7 +2,7 @@
   "name": "observable-graphql",
   "version": "0.1.0",
   "description": "A view-layer-agnostic approach to managing state with Redux, Apollo Client, and Observables",
-  "main": "index.ts",
+  "main": "index.html",
   "author": "Alex Pearson <alex@alexpear.com>",
   "license": "MIT",
   "private": true,
@@ -19,6 +19,10 @@
     "typescript": "^3.3.3"
   },
   "dependencies": {
+    "apollo-cache-redux": "^0.1.2",
+    "apollo-client": "^2.4.12",
+    "apollo-link-http": "^1.5.11",
+    "graphql": "^14.1.1",
     "redux": "^4.0.1"
   }
 }

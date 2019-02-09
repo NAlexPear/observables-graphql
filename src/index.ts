@@ -1,9 +1,6 @@
 import { Action, createStore } from 'redux'
+import { CustomWindow } from './types'
 
-
-interface CustomWindow extends Window {
-  __REDUX_DEVTOOLS_EXTENSION__: Function
-}
 
 declare const window: CustomWindow
 

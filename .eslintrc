@@ -35,8 +35,10 @@
     "Promise": true
   },
   "settings": {
-    "react": {
-      "version": "detect"
+    "import/resolver": {
+      "node": {
+        "extensions": [".ts"]
+      }
     }
   }
 }
