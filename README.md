@@ -35,3 +35,5 @@ This project leverages the following tools to accomplish the above goals:
 ### Use:
 
 At the moment, this project is meant as a proof-of-concept. After enough dog-fooding, this stack may eventually include scripts for generating the initial boilerplate and project structure.
+
+If you're looking to run the example application, please install dependencies with `npm` or `yarn` and then run the `start` script (e.g. `npm start` or `yarn start`)
