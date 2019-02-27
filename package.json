@@ -10,6 +10,7 @@
     "start": "parcel index.html"
   },
   "devDependencies": {
+    "@octokit/graphql-schema": "^6.1.0",
     "@typescript-eslint/eslint-plugin": "^1.3.0",
     "@typescript-eslint/parser": "^1.3.0",
     "eslint": "^5.13.0",
@@ -19,10 +20,16 @@
     "typescript": "^3.3.3"
   },
   "dependencies": {
-    "apollo-cache-redux": "^0.1.2",
+    "@types/virtual-dom": "^2.1.0",
+    "apollo-cache-inmemory": "^1.4.2",
     "apollo-client": "^2.4.12",
     "apollo-link-http": "^1.5.11",
-    "graphql": "^14.1.1",
-    "redux": "^4.0.1"
+    "eslint-plugin-graphql": "^3.0.3",
+    "graphql": "^14.0.0",
+    "graphql-tag": "2.10.0",
+    "lodash": "^4.17.11",
+    "milligram": "^1.3.0",
+    "redux": "4.x",
+    "virtual-dom": "^2.1.1"
   }
 }

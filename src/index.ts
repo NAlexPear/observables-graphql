@@ -1,69 +1,54 @@
-import { Action, createStore } from 'redux'
-import { CustomWindow } from './types'
+import 'milligram/dist/milligram.css'
+import {
+  create,
+  diff,
+  patch,
+  VNode,
+} from 'virtual-dom'
+import gql from 'graphql-tag'
+import client from './client'
+import store from './store'
+import App from './components/App'
 
 
-declare const window: CustomWindow
+const test = gql`
+  query Viewer {
+    viewer {
+      login
+    }
+  }
+`
 
 const output = document.querySelector('#root')
 
-const counterReducer = (state, { type }) => {
-  switch (type) {
-    case 'INCREMENT':
-      return state + 1
-    case 'DECREMENT':
-      return state - 1
-    default:
-      return state
+class VDOM {
+  vdom: VNode
+  root: Element
+
+  constructor(node) {
+    const { firstChild } = node
+    this.vdom = App(store.getState())
+    this.root = create(this.vdom)
+
+    if (firstChild) {
+      node.removeChild(firstChild)
+    }
+
+    node.appendChild(this.root)
+  }
+
+  render() {
+    const newVdom = App(store.getState())
+    const patches = diff(this.vdom, newVdom)
+    this.root = patch(this.root, patches)
+    this.vdom = newVdom
   }
 }
 
-const store = createStore<number, Action, {}, {}>(
-  counterReducer,
-  0,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() // eslint-disable-line
-)
+const main = new VDOM(output)
 
-const increment = () => store.dispatch({ type: 'INCREMENT' })
+store.subscribe(main.render.bind(main))
 
-const decrement = () => store.dispatch({ type: 'DECREMENT' })
-
-const Counter = (count) => {
-  const counter = document.createElement('h1')
-
-  counter.textContent = `The Count is: ${count}`
-
-  return counter
-}
-
-const Up = () => {
-  const button = document.createElement('button')
-
-  button.textContent = '+'
-  button.addEventListener('click', increment)
-
-  return button
-}
-
-const Down = () => {
-  const button = document.createElement('button')
-
-  button.textContent = '-'
-  button.addEventListener('click', decrement)
-
-  return button
-}
-
-const render = () => {
-  const count = store.getState()
-  const elements = [Counter, Up, Down]
-
-  output.innerHTML = ''
-
-  elements.forEach((Element) => {
-    output.appendChild(Element(count))
-  })
-}
-
-store.subscribe(render)
-
-render()
+client
+  .query({ query: test })
+  .then(result => console.log(result))
