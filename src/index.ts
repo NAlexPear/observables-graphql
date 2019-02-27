@@ -5,19 +5,9 @@ import {
   patch,
   VNode,
 } from 'virtual-dom'
-import gql from 'graphql-tag'
-import client from './client'
 import store from './store'
 import App from './components/App'
 
-
-const test = gql`
-  query Viewer {
-    viewer {
-      login
-    }
-  }
-`
 
 const output = document.querySelector('#root')
 
@@ -49,6 +39,6 @@ const main = new VDOM(output)
 
 store.subscribe(main.render.bind(main))
 
-client
-  .query({ query: test })
-  .then(result => console.log(result))
+// client
+//   .query({ query: test })
+//   .then(result => console.log(result))
